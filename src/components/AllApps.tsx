@@ -10,6 +10,17 @@ import { getListItemLayout, getListKey } from '../utils/apps'
 import AllAppsLetterIndex from './AllAppsLetterIndex'
 import AppItem from './AppItem'
 
+const allowedPackageNames = [
+  'com.android.settings',
+  'com.google.android.dialer',
+  'com.google.android.apps.photos',
+  'com.google.android.contacts',
+  'com.google.android.calendar',
+  'com.android.camera2',
+  'com.android.chrome',
+  'com.heinekenmy.dsr',
+]
+
 const AllApps = () => {
   const apps = useSelector(selectAppsListMemoized)
   const listRef: MutableRefObject<FlatList<AppDetails> | null> = useRef(null)
@@ -23,13 +34,15 @@ const AllApps = () => {
     <AppItem appDetails={item} renderedIn={RenderedIn.ALL_APPS} />
   )
 
+  console.log('AllApps', { appNames: apps.map(app => app.packageName) })
+
   return (
     <Animated.View style={styles.wrapper} entering={SlideInDown}>
       <FlatList
-        data={apps}
+        data={apps.filter(app => allowedPackageNames.includes(app.packageName))}
         ref={listRef}
         renderItem={renderItem}
-        initialNumToRender={14}
+        initialNumToRender={3}
         keyExtractor={getListKey}
         getItemLayout={getListItemLayout}
         showsVerticalScrollIndicator={false}

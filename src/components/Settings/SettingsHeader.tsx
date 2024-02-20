@@ -24,7 +24,7 @@ const SettingsHeader = () => {
   return (
     <View style={styles.wrapper} testID='wrapper'>
       <Text style={styles.title}>
-        Context Settings
+        Launcher Settings
         <Text style={styles.appInfoText}>
           &nbsp;&nbsp;v{APP_VERSION} ({APP_BUILD_NUMBER})
         </Text>
@@ -34,7 +34,7 @@ const SettingsHeader = () => {
         android_disableSound={true}
         android_ripple={appInfoIconRippleConfig}
         testID='app-info-button'>
-        <CustomIcon name='information-outline' size={34} color='#808080' />
+        <CustomIcon name='application-cog-outline' size={34} color='#808080' />
       </Pressable>
     </View>
   )

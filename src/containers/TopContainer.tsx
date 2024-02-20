@@ -27,14 +27,24 @@ import {
 
 const TopContainer = () => {
   const searchQuery = useSelector(selectAppsSearchQuery)
-  const displayRecentApps = useSelector(selectDisplayRecentAppsMemoized)
-  const displayPinnedApps = useSelector(selectDisplayPinnedAppsMemoized)
+  // const displayRecentApps = useSelector(selectDisplayRecentAppsMemoized)
+  // const displayPinnedApps = useSelector(selectDisplayPinnedAppsMemoized)
   const displayTemporaryPinnedApps = useSelector(selectDisplayTemporaryPinnedAppsMemoized)
-  const displayFavoriteApps = useSelector(selectDisplayFavoriteAppsMemoized)
+  // const displayFavoriteApps = useSelector(selectDisplayFavoriteAppsMemoized)
   const sortableFavoriteApps = useSelector(selectDisplaySortableFavoriteApps)
   const sortablePinnedApps = useSelector(selectDisplaySortablePinnedApps)
   const sortableTemporaryPinnedApps = useSelector(selectDisplaySortableTemporaryPinnedApps)
-  const displayAllApps = useSelector(selectDisplayAllApps)
+  // const displayAllApps = useSelector(selectDisplayAllApps)
+  
+  const displayRecentApps = false
+  const displayPinnedApps = false
+  // const displayTemporaryPinnedApps = false
+  const displayFavoriteApps = false
+  // const sortableFavoriteApps = false
+  // const sortablePinnedApps = false
+  // const sortableTemporaryPinnedApps = false
+  const displayAllApps = true
+  
   const canRender = useTimeBasedRendering()
 
   return (

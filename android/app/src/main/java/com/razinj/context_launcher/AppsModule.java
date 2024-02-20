@@ -1,5 +1,6 @@
 package com.razinj.context_launcher;
 
+import static androidx.core.content.ContextCompat.startActivity;
 import static com.razinj.context_launcher.Constants.PACKAGE_CHANGE_EVENT;
 import static com.razinj.context_launcher.Constants.PACKAGE_CHANGE_IS_REMOVED;
 import static com.razinj.context_launcher.Constants.PACKAGE_CHANGE_NAME;
@@ -103,6 +104,26 @@ public class AppsModule extends ReactContextBaseJavaModule {
         }
 
         promise.resolve(apps.toString());
+    }
+
+    private boolean isHLauncherDefault() {
+        PackageManager localPackageManager = reactContext.getPackageManager();
+        Intent intent = new Intent("android.intent.action.MAIN");
+        intent.addCategory("android.intent.category.HOME");
+        String str = localPackageManager.resolveActivity(intent,
+                PackageManager.MATCH_DEFAULT_ONLY).activityInfo.packageName;
+        return str.equals(reactContext.getPackageName());
+    }
+
+    @ReactMethod
+    public void showLauncherSelector() {
+        if (isHLauncherDefault()) {
+            reactContext.getPackageManager().clearPackagePreferredActivities(reactContext.getPackageName());
+        }
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        reactContext.startActivity(startMain);
     }
 
     @ReactMethod

@@ -6,6 +6,7 @@ export interface AppsModuleInterface {
   showApplicationDetails(packageName: string): void
   requestApplicationUninstall(packageName: string): void
   getApplications(): Promise<string>
+  showLauncherSelector(): Promise<void>
 }
 
 type AppsModuleConstants = {

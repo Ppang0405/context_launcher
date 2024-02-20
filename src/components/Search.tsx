@@ -48,6 +48,7 @@ const Search = () => {
   const clearInputAndSearchState = useCallback(() => {
     clearSearchInput()
     dispatch(resetAppsSearchState())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchInputRef])
 
   const clearButton = (): JSX.Element | null => {
@@ -77,6 +78,11 @@ const Search = () => {
     dispatch(appLaunchFromSearch())
   }
 
+  const handleSearchFocus = () => {
+    // show all apps
+    dispatch(setDisplayAllApps(true))
+  }
+
   return (
     <View style={styles.wrapper}>
       <TextInput
@@ -89,6 +95,7 @@ const Search = () => {
         autoCapitalize='words'
         onChangeText={onQueryChange}
         onSubmitEditing={onSubmit}
+        onFocus={handleSearchFocus}
       />
       {clearButton()}
     </View>

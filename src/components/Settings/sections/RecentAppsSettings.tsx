@@ -14,6 +14,7 @@ import {
   switchTrackColor,
 } from '../shared/values'
 
+// TODO: change to "Set Default Launcher Option"
 const RecentAppsSettings = () => {
   const dispatch = useDispatch()
   const displayRecentAppsValue = useSelector(selectDisplayRecentAppsMemoized)
